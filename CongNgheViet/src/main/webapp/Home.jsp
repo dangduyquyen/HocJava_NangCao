@@ -1,3 +1,4 @@
+<%@page import="bean.KhachHangbean"%>
 <%@page import="bean.SanPhambean"%>
 <%@page import="bean.HoatDongCuaHangbean"%>
 <%@page import="java.lang.reflect.Array"%>
@@ -20,6 +21,10 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- CSS -->
 <style>
+.well{
+	width: 358px;
+	height: 481px
+}
 .card {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	max-width: 300px;
@@ -59,14 +64,13 @@
 	ArrayList<LoaiSanPhambean> dsloaiSP = (ArrayList<LoaiSanPhambean>) request.getAttribute("dsloaiSP");
 	ArrayList<HoatDongCuaHangbean> dsHoatDong = (ArrayList<HoatDongCuaHangbean>) request.getAttribute("dsHoatDong");
 	ArrayList<SanPhambean> dsSanPham = (ArrayList<SanPhambean>) request.getAttribute("dsSanPham");
-	ArrayList<SanPhambean> dsDienThoai = (ArrayList<SanPhambean>) request.getAttribute("dsDienThoai");
 	%>
 	<!-- End Code JAVA -->
 	<!-- header -->
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Công Nghệ Việt</a>
+				<a class="navbar-brand" href="HomeController">Công Nghệ Việt</a>
 			</div>
 			<ul class="nav navbar-nav">
 				<li class="dropdown"><a class="dropdown-toggle"
@@ -76,14 +80,14 @@
 						<%
 						for (LoaiSanPhambean l : dsloaiSP) {
 						%>
-						<li><a href="<%=l.getMaLoaiSP()%>"><%=l.getTenLoaiSP()%></a></li>
+						<li><a href="HienThiSanPham?ml=<%=l.getMaLoaiSP()%>"><%=l.getTenLoaiSP()%></a></li>
 						<%
 						}
 						%>
 					</ul></li>
 
 			</ul>
-			<form class="navbar-form navbar-left" action="/action_page.php">
+			<form class="navbar-form navbar-left" action="HienThiSanPham" method="get">
 				<div class="input-group">
 					<input size=50 type="text" class="form-control"
 						placeholder="Search" name="search">
@@ -95,12 +99,27 @@
 				</div>
 			</form>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Lịch sử đơn hàng</a></li>
-				<li><a href="#">Giỏ hàng</a></li>
+				<li><a href="LichSuDonHangController">Lịch sử đơn hàng</a></li>
+				<li><a href="GioHangController">Giỏ hàng</a></li>
+				<%
+				if (session.getAttribute("user") != null) {
+				%>
+				<li><a href="DangNhap.jsp"> <span
+						class="glyphicon glyphicon-log-in"></span> Hi: <%
+							 KhachHangbean kh = (KhachHangbean) session.getAttribute("user");
+							 out.print(kh.getHoTen());
+							 %>
+				</a></li>
+				<%
+				} else {
+				%>
 				<li><a href="DangKy.jsp"><span
 						class="glyphicon glyphicon-user"></span> Đăng ký</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
-						Đăng nhập</a></li>
+
+				<li><a href="DangNhap.jsp"> <span
+						class="glyphicon glyphicon-log-in"></span> Đăng nhập </a></li> <%
+				 }
+				 %>
 			</ul>
 		</div>
 	</nav>
@@ -159,63 +178,47 @@
 
 	<!-- Het Hoat Dong Cua Hang -->
 
-	<!-- ds dien thoai -->
+	<!-- ds san pham -->
 
 	<h1><a>Sản Phẩm</a></h1>
 
 	<div class="row">
 		<%
-		for (int i = 0; i < 4; i++) {
-			SanPhambean dt = dsSanPham.get(i);
+		int n = dsSanPham.size();
+		for (int i = 0; i < n; i++) {
+			SanPhambean sp = dsSanPham.get(i);
 		%>
 		<div class="col-sm-3">
 			<div class="well">
 				<div class="card">
-					<img src="<%=dt.getAnhSP()%>" alt="img"
+					<img src="<%=sp.getAnhSP()%>" alt="img"
 						style="width: 100%">
-					<h4><a href="#?ml=<%=dt.getMaSP()%>"><%=dt.getTenSP() %></a></h4>
-					<p class="price"><%=dt.getGia()%></p>
+					<h4><a href="ThongTinSanPhamController?maSP=<%=sp.getMaSP()%>"><%=sp.getTenSP() %></a></h4>
+					<p class="price"><%=sp.getGia()%></p>
 					<p>
-						<button>Add to Cart</button>
+						<a
+						href="ThemSanPhamController?maSP=<%=sp.getMaSP()%>&tenSP=<%=sp.getTenSP()%>&giaSP=<%=sp.getGia()%>&anhSP=<%=sp.getAnhSP()%>"><button>Add
+							to Cart</button></a>
 					</p>
 				</div>
 			</div>
 		</div>
 		<%
 		i++;
-		if (i < 4) {
-			dt = dsSanPham.get(i);
+		if (i < n) {
+			sp = dsSanPham.get(i);
 		%>
 		<div class="col-sm-3">
 			<div class="well">
 				<div class="card">
-					<img src="<%=dt.getAnhSP()%>" alt="img"
+					<img src="<%=sp.getAnhSP()%>" alt="img"
 						style="width: 100%">
-					<h4><a href="#?ml=<%=dt.getMaSP()%>"><%=dt.getTenSP() %></a></h4>
-					<p class="price"><%=dt.getGia()%></p>
+					<h4><a href="ThongTinSanPhamController?maSP=<%=sp.getMaSP()%>"><%=sp.getTenSP() %></a></h4>
+					<p class="price"><%=sp.getGia()%></p>
 					<p>
-						<button>Add to Cart</button>
-					</p>
-				</div>
-			</div>
-		</div>
-		<%
-		}
-		%>
-		<%
-		i++;
-		if (i < 4) {
-			dt = dsSanPham.get(i);
-		%>
-		<div class="col-sm-3">
-			<div class="well">
-				<div class="card">
-					<img src="<%=dt.getAnhSP()%>" alt="img"
-						style="width: 100%">
-					<h4><a href="#?ml=<%=dt.getMaSP()%>"><%=dt.getTenSP() %></a></h4>
-					<p class="price"><%=dt.getGia()%></p>
-					<p>
-						<button>Add to Cart</button>
+						<a
+						href="ThemSanPhamController?maSP=<%=sp.getMaSP()%>&tenSP=<%=sp.getTenSP()%>&giaSP=<%=sp.getGia()%>&anhSP=<%=sp.getAnhSP()%>"><button>Add
+							to Cart</button></a>
 					</p>
 				</div>
 			</div>
@@ -225,18 +228,43 @@
 		%>
 		<%
 		i++;
-		if (i < 4) {
-			dt = dsSanPham.get(i);
+		if (i < n) {
+			sp = dsSanPham.get(i);
 		%>
 		<div class="col-sm-3">
 			<div class="well">
 				<div class="card">
-					<img src="<%=dt.getAnhSP()%>" alt="img"
+					<img src="<%=sp.getAnhSP()%>" alt="img"
 						style="width: 100%">
-					<h4><a href="#?ml=<%=dt.getMaSP()%>"><%=dt.getTenSP() %></a></h4>
-					<p class="price"><%=dt.getGia()%></p>
+					<h4><a href="ThongTinSanPhamController?maSP=<%=sp.getMaSP()%>"><%=sp.getTenSP() %></a></h4>
+					<p class="price"><%=sp.getGia()%></p>
 					<p>
-						<button>Add to Cart</button>
+						<a
+						href="ThemSanPhamController?maSP=<%=sp.getMaSP()%>&tenSP=<%=sp.getTenSP()%>&giaSP=<%=sp.getGia()%>&anhSP=<%=sp.getAnhSP()%>"><button>Add
+							to Cart</button></a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<%
+		}
+		%>
+		<%
+		i++;
+		if (i < n) {
+			sp = dsSanPham.get(i);
+		%>
+		<div class="col-sm-3">
+			<div class="well">
+				<div class="card">
+					<img src="<%=sp.getAnhSP()%>" alt="img"
+						style="width: 100%">
+					<h4><a href="ThongTinSanPhamController?maSP=<%=sp.getMaSP()%>"><%=sp.getTenSP() %></a></h4>
+					<p class="price"><%=sp.getGia()%></p>
+					<p>
+						<a
+						href="ThemSanPhamController?maSP=<%=sp.getMaSP()%>&tenSP=<%=sp.getTenSP()%>&giaSP=<%=sp.getGia()%>&anhSP=<%=sp.getAnhSP()%>"><button>Add
+							to Cart</button></a>
 					</p>
 				</div>
 			</div>
@@ -248,10 +276,6 @@
 		}
 		%>
 	</div>
-
-
-	<!-- ds lap top -->
-
-
+	
 </body>
 </html>

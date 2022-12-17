@@ -23,10 +23,13 @@
 </head>
 <body>
 <!-- code java -->
-	<% String tbTaoTaiKhoan = (String)request.getAttribute("tbThieuThongTin"); %>
-	<% String tbLoiTenDN = (String)request.getAttribute("tbLoiTenDN"); %>
+	<% 
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		String tbTaoTaiKhoan = (String)request.getAttribute("tbThieuThongTin");
+		String tbLoiTenDN = (String)request.getAttribute("tbLoiTenDN"); 
+	%>
 <!-- end code java -->
-
 
 <section class="vh-100 bg-image"
   style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
@@ -80,7 +83,7 @@
 				<%if(tbTaoTaiKhoan != null){%>
 					<p color : red;> <%=tbTaoTaiKhoan%> </p>
 				<%} %>
-                <p class="text-center text-muted mt-5 mb-0">Bạn đã có tài khoản? <a href="#!"
+                <p class="text-center text-muted mt-5 mb-0">Bạn đã có tài khoản? <a href="DangNhap.jsp"
                     class="fw-bold text-body"><u>Đăng nhập tại đây</u></a></p>
 
               </form>

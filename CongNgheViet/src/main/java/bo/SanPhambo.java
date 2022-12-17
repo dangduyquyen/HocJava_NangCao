@@ -7,6 +7,7 @@ import dao.SanPhamdao;
 
 public class SanPhambo {
 	ArrayList<SanPhambean> ds;
+
 	SanPhamdao spdao = new SanPhamdao();
 
 	public ArrayList<SanPhambean> getSanPham() {
@@ -15,21 +16,26 @@ public class SanPhambo {
 	}
 
 	public ArrayList<SanPhambean> getDienThoai() {
+		ds = spdao.getDienThoai();
+		return ds;
+	}
+
+	public ArrayList<SanPhambean> getLapTop() {
+		ds = spdao.getLapTop();
+		return ds;
+	}
+
+	public ArrayList<SanPhambean> timKiem(String key) {
 		ArrayList<SanPhambean> tam = new ArrayList<SanPhambean>();
-		for (SanPhambean s : tam) {
-			if (s.getMaLoaiSP().equals("DT")) {
+		ds = spdao.getSanPham();
+		for (SanPhambean s : ds) {
+			if (s.getTenSP().toLowerCase().contains(key.toLowerCase())
+					|| s.getNhaSX().toLowerCase().contains(key.toLowerCase())
+					|| s.getMaLoaiSP().toLowerCase().contains(key.toLowerCase())) {
 				tam.add(s);
 			}
 		}
 		return tam;
 	}
 
-	public static void main(String[] args) {
-		SanPhambo spbo = new SanPhambo();
-		ArrayList<SanPhambean> ds = spbo.getDienThoai();
-		for (SanPhambean s : ds) {
-			System.out.println(s.getTenSP());
-		}
-
-	}
 }

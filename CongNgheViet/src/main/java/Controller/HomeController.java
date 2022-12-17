@@ -44,13 +44,11 @@ public class HomeController extends HttpServlet {
 		SanPhambo spbo = new SanPhambo();
 
 		ArrayList<LoaiSanPhambean> dsloaiSP = lspbo.getloai();
-		ArrayList<SanPhambean> dsDienThoai = spbo.getDienThoai();
 		ArrayList<SanPhambean> dsSanPham = spbo.getSanPham();
 		ArrayList<HoatDongCuaHangbean> dsHoatDong = hdbo.getHoatDong();
 
 		request.setAttribute("dsHoatDong", (ArrayList<HoatDongCuaHangbean>) dsHoatDong);
 		request.setAttribute("dsloaiSP", (ArrayList<LoaiSanPhambean>) dsloaiSP);
-		request.setAttribute("dsDienThoai", (ArrayList<SanPhambean>) dsDienThoai);
 		request.setAttribute("dsSanPham", (ArrayList<SanPhambean>) dsSanPham);
 		RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
 		rd.forward(request, response);

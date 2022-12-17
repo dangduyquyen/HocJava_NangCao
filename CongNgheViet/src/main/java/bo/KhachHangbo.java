@@ -1,5 +1,6 @@
 package bo;
 
+import bean.KhachHangbean;
 import dao.KhachHangdao;
 
 public class KhachHangbo {
@@ -11,6 +12,10 @@ public class KhachHangbo {
 
 	public boolean KiemTraTenDN(String tenDN) {
 		return khdao.KiemTraTenDN(tenDN);
+	}
+
+	public KhachHangbean dangNhapUser(String user, String pass) {
+		return khdao.dangNhapUser(user, pass);
 	}
 
 //	public static void main(String[] args) {
