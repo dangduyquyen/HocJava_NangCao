@@ -29,6 +29,13 @@
 		img{
 		max-width: 100%;
 		}
+		.addProduct{
+			margin-top: 10px;
+		}
+		.addProduct .bt-add-Product{
+			margin-left: 500px;
+			margin-bottom: 20px;
+		}
 	</style>
 </head>
 <body>
@@ -74,6 +81,123 @@
 		</nav>
 	</header>
 
+	<!-- Thêm Sản phẩm -->
+	<!-- Thông báo edit -->
+	<%String tbeditSP = (String)request.getAttribute("tbeditSP");
+		if(tbeditSP != null){
+		%>
+		<h1><%=tbeditSP %></h1>
+		<%		
+		}
+		%>
+	<!-- Thêm Loại SP -->
+
+<div class="addProduct">	
+	<h1>Thêm sản Phẩm</h1>
+	<hr>
+		<form action="AdminThemSanPhamController" method="post" enctype="multipart/form-data">
+			<h2>Thông tin</h2>
+				<table class="table table-hover">
+					<tr>
+						<td width="200"><span>Mã sản phẩm</span></td>
+						<td width="300"><input type="text" name="maSP" size="50"></td>
+					</tr>
+					<tr>
+						<td width="200"><span>Mã loại Sản Phẩm</span></td>
+						<td width="300"><input type="text" name="maLoaiSP" size="50"></td>
+					</tr>
+					<tr>
+						<td width="200"><span>Tên sản phẩm</span></td>
+						<td width="300"><input type="text" name="tenSP" size="50"></td>
+					</tr>
+					<tr>
+						<td width="200"><span>Số Lượng</span></td>
+						<td width="300"><input type="number" name="soLuong" size="50"></td>
+					</tr>
+					<tr>
+						<td width="200"><span>Giá</span></td>
+						<td width="300"><input type="number" name="gia" size="50"></td>
+					</tr>
+					<tr>
+						<td width="200"><span>Ảnh sản Phẩm</span></td>
+						<td width="300"><input type="file" name="anhSP" size="50" placeholder="Ảnh sản phẩm"></td>
+						
+					</tr>
+					<tr>
+						<td width="200"><span>Tên ảnh sản phẩm</span></td>
+						<td width="300"><input  type="text" name="tenAnhSP" size="50"></td>
+					</tr>
+					<tr>
+						<td width="200"><span>Nhà sản xuất</span></td>
+						<td width="300"><input  type="text" name="nhaSX" size="50"></td>
+					</tr>
+					<tr>
+						<td width="200"><span>Năm sản xuất</span></td>
+						<td width="300"><input type="text" name="namSX" size="50"></td>
+					</tr>
+					<tr>
+						<td width="200"><span>Thời gian bảo hành</span></td>
+						<td width="300"><input type="text" name="thoiGianBaoHanh" size="50"></td>
+					</tr>
+					<tr>
+						<td width="200"><span>Thông tin sản phẩm</span></td>
+						<td width="300"><input type="text" name="thongTinSP" size="50"></td>
+					</tr>
+				</table>
+			<h2>Thông số kỹ thuật</h2>
+				<table class="table table-hover">
+					<tr>
+						<td width="200"><span>Thông Số 1</span></td>
+						<td width="300"><input type="text" name="thongSo1" size="50"></td>
+					</tr>
+					<tr>
+						<td width="200"><span>Thông Số 2</span></td>
+						<td width="300"><input type="text" name="thongSo2" size="50"></td>
+					</tr>
+					<tr>
+						<td width="200"><span>Thông Số 3</span></td>
+						<td width="300"><input type="text" name="thongSo3" size="50"></td>
+					</tr>
+					<tr>
+						<td width="200"><span>Thông Số 4</span></td>
+						<td width="300"><input type="text" name="thongSo4" size="50"></td>
+					</tr>
+					<tr>
+						<td width="200"><span>Thông Số 5</span></td>
+						<td width="300"><input type="text" name="thongSo5" size="50"></td>
+					</tr>
+					<tr>
+						<td width="200"><span>Thông Số 6</span></td>
+						<td width="300"><input type="text" name="thongSo6" size="50"></td>
+					</tr>
+					<tr>
+						<td width="200"><span>Thông Số 7</span></td>
+						<td width="300"><input type="text" name="thongSo7" size="50"></td>
+					</tr>
+					<tr>
+						<td width="200"><span>Thông Số 8</span></td>
+						<td width="300"><input type="text" name="thongSo8" size="50"></td>
+					</tr>
+					<tr>
+						<td width="200"><span>Thông Số 9</span></td>
+						<td width="300"><input type="text" name="thongSo9" size="50"></td>
+					</tr>
+					<tr>
+						<td width="200"><span>Thông Số 10</span></td>
+						<td width="300"><input type="text" name="thongSo10" size="50"></td>
+					</tr>
+					
+				</table>
+			<button type="submit" class="bt-add-Product">Thêm</button>
+		</form>
+	<%
+		String tbEditLoaiSP = (String)request.getAttribute("");
+		if(tbEditLoaiSP != null){ %>
+			<h1 style="color: red;"><%=tbEditLoaiSP %></h1>
+		<%} %>
+		
+	<h1>Sản phẩm</h1>
+</div>
 	<td width="800" valign="top">
 		<table class="table table-hover">
 			<tr>
@@ -105,7 +229,7 @@
 				<td width="150"><b><%=s.getNhaSX() %></b></td>
 				<td width="150"><b><%=s.getNamSX() %></b></td>
 				<td><a
-					href="#">
+					href="AdminXoaSanPhamController?maSP=<%=s.getMaSP()%>">
 					<button>Xóa</button></a></td>
 			</tr>
 			<%} %>

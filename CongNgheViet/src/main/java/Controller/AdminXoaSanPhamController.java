@@ -2,26 +2,26 @@ package Controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import bo.GioHangbo;
+import bo.SanPhambo;
 
 /**
- * Servlet implementation class XoaSanPhamController
+ * Servlet implementation class AdminXoaSanPhamController
  */
-@WebServlet("/XoaSanPhamController")
-public class XoaSanPhamController extends HttpServlet {
+@WebServlet("/AdminXoaSanPhamController")
+public class AdminXoaSanPhamController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public XoaSanPhamController() {
+	public AdminXoaSanPhamController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -33,24 +33,19 @@ public class XoaSanPhamController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		HttpSession session = request.getSession();
-
 		String maSP = request.getParameter("maSP");
-
-		GioHangbo gh = (GioHangbo) session.getAttribute("gio");
-
-		if (session.getAttribute("gio") == null) {
-			gh = new GioHangbo();
-			session.setAttribute("gio", gh);
-		}
-
+		String tbeditSanPham = null;
+		SanPhambo spbo = new SanPhambo();
 		if (maSP != null) {
-			gh.xoaSP(maSP);
+			if (spbo.xoaSP(maSP.trim())) {
+				tbeditSanPham = "Sản phảm đã được xóa thành công!";
+			} else {
+				tbeditSanPham = "Lỗi!";
+			}
 		}
-
-		session.setAttribute("gio", gh);
-		response.sendRedirect("GioHangController");
-
+		request.setAttribute("tbeditSP", tbeditSanPham);
+		RequestDispatcher rd = request.getRequestDispatcher("QuanLySanPhamController");
+		rd.forward(request, response);
 	}
 
 	/**

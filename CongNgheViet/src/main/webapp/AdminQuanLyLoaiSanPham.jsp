@@ -103,11 +103,11 @@
 		<td width="800" valign="top">
 			<table class="table table-hover">
 				<tr>
-					<td width="100"><span>Mã Loại Sách</span></td>
+					<td width="100"><span>Mã Loại Sản Phẩm</span></td>
 					<td width="200"><input name="maLoaiSP" size="50"></td>
 				</tr>
 				<tr>
-					<td width="100"><span>Tên Loại Sách</span></td>
+					<td width="100"><span>Tên Loại Sản Phẩm</span></td>
 					<td width="200"><input name="tenLoaiSP" size="50"></td>
 				</tr>
 			</table>

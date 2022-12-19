@@ -143,4 +143,56 @@ public class SanPhamdao {
 		return sp;
 	}
 
+	// them sp
+	public boolean themSP(String MaSP, String MaLoaiSP, String TenSP, long SoLuong, long Gia, String AnhSP,
+			String NhaSX, String NamSX, String ThoiGianBaoHanh, String ThongTinSP) {
+		try {
+			KetNoi kn = new KetNoi();
+			kn.KetNoi();
+			String sql = "INSERT INTO SanPham(MaSP,MaLoaiSP,TenSP,SoLuong,Gia,AnhSP,NhaSX,NamSX,ThoiGianBaoHanh,ThongTinSP)VALUES (?,?,?,?,?,?,?,?,?,?)";
+			PreparedStatement cmd = kn.cn.prepareStatement(sql);
+			cmd.setString(1, MaSP);
+			cmd.setString(2, MaLoaiSP);
+			cmd.setString(3, TenSP);
+			cmd.setLong(4, SoLuong);
+			cmd.setLong(5, Gia);
+			cmd.setString(6, AnhSP);
+			cmd.setString(7, NhaSX);
+			cmd.setString(8, NamSX);
+			cmd.setString(9, ThoiGianBaoHanh);
+			cmd.setString(10, ThongTinSP);
+
+			cmd.executeUpdate();
+
+			kn.cn.close();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	// soa sp
+	public boolean xoaSP(String maSP) {
+
+		KetNoi kn = new KetNoi();
+		kn.KetNoi();
+		String sql = "delete from SanPham where MaSP = ?";
+		try {
+			PreparedStatement cmd = kn.cn.prepareStatement(sql);
+			cmd.setString(1, maSP);
+			cmd.executeUpdate();
+
+			kn.cn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+
+		return true;
+	}
+
 }

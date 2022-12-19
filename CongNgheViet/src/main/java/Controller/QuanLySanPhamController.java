@@ -36,7 +36,9 @@ public class QuanLySanPhamController extends HttpServlet {
 			throws ServletException, IOException {
 		SanPhambo spbo = new SanPhambo();
 		ArrayList<SanPhambean> dsSanPham = spbo.getSanPham();
+		String tbeditSP = (String) request.getAttribute("tbeditSP");
 
+		request.setAttribute("tbeditSP", tbeditSP);
 		request.setAttribute("dsSanPham", (ArrayList<SanPhambean>) dsSanPham);
 		RequestDispatcher rd = request.getRequestDispatcher("AdminQuanLySanPham.jsp");
 		rd.forward(request, response);

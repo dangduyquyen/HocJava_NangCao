@@ -150,14 +150,19 @@ long tongTien = (long) request.getAttribute("tongTien");
 													<div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1" style="margin-left: 0px;">
 														<h6 class="mb-0" ><%=sp.getGia() %> đ</h6>
 													</div>
+													
 													<div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-														<input id="form1" min="0" name="quantity" value="<%=sp.getSoLuong() %>"
-															type="number" class="form-control form-control-sm" />
-		
-														<button class="btn btn-link px-2">
-															Cập nhật
-														</button>
+														<form action="CapNhatSoLuongController" method="get">
+															<input id="form1" name="maSP" value="<%=sp.getMaSP() %>"
+																type="text" class="form-control form-control-sm" />
+															<input id="form1" min="0" name="soLuong" value="<%=sp.getSoLuong() %>"
+																type="number" class="form-control form-control-sm" />
+															<button class="btn btn-link px-2" type="submit" name="bt_CapNhat">
+																Cập nhật
+															</button>
+														</form>	
 													</div>
+													
 													<div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1" style="margin-left: 0px;">
 														<h6 class="mb-0"><%=sp.getThanhTien() %> đ</h6>
 													</div>

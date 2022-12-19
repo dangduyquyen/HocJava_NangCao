@@ -9,8 +9,8 @@ public class GioHangbo {
 
 	public void themSanPham(String maSP, String tenSP, long gia, long soLuong, String anh) {
 		for (GioHangbean sp : ds) {
-			if (sp.getMaSP().equals(maSP)) {
-				sp.setSoLuong(sp.getSoLuong() + soLuong);
+			if (sp.getMaSP().trim().equals(maSP.trim())) {
+				sp.setSoLuong(soLuong);
 				return;
 			}
 		}
@@ -27,13 +27,10 @@ public class GioHangbo {
 
 	public void xoaSP(String maSP) {
 		for (GioHangbean sp : ds) {
-			if (sp.getMaSP().equals(maSP)) {
+			if (maSP.trim().equals(sp.getMaSP().trim())) {
 				ds.remove(sp);
 			}
 		}
 	}
 
-	public void CapNhatSL(String maSP, long soLuong) {
-
-	}
 }

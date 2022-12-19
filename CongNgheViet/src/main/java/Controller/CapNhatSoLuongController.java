@@ -12,16 +12,16 @@ import javax.servlet.http.HttpSession;
 import bo.GioHangbo;
 
 /**
- * Servlet implementation class XoaSanPhamController
+ * Servlet implementation class CapNhatSoLuongController
  */
-@WebServlet("/XoaSanPhamController")
-public class XoaSanPhamController extends HttpServlet {
+@WebServlet("/CapNhatSoLuongController")
+public class CapNhatSoLuongController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public XoaSanPhamController() {
+	public CapNhatSoLuongController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -32,25 +32,17 @@ public class XoaSanPhamController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		HttpSession session = request.getSession();
 
 		String maSP = request.getParameter("maSP");
-
+		long soLuong = Long.parseLong(request.getParameter("soLuong"));
 		GioHangbo gh = (GioHangbo) session.getAttribute("gio");
 
-		if (session.getAttribute("gio") == null) {
-			gh = new GioHangbo();
-			session.setAttribute("gio", gh);
+		if (request.getParameter("bt_CapNhat") != null) {
+			gh.themSanPham(maSP, "", 0, soLuong, "");
 		}
-
-		if (maSP != null) {
-			gh.xoaSP(maSP);
-		}
-
 		session.setAttribute("gio", gh);
 		response.sendRedirect("GioHangController");
-
 	}
 
 	/**

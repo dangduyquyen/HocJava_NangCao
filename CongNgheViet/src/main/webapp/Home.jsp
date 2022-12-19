@@ -78,9 +78,13 @@
 						class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<%
+							if(dsloaiSP != null){
 						for (LoaiSanPhambean l : dsloaiSP) {
 						%>
 						<li><a href="HienThiSanPham?ml=<%=l.getMaLoaiSP()%>"><%=l.getTenLoaiSP()%></a></li>
+						<%
+						}
+						%>
 						<%
 						}
 						%>
