@@ -1,3 +1,4 @@
+<%@page import="bean.AdminDonHangbean"%>
 <%@page import="bean.Adminbean"%>
 <%@page import="bean.LoaiSanPhambean"%>
 <%@page import="java.util.ArrayList"%>
@@ -7,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Admin Quản lý loại sản phẩm</title>
+<title>Admin Đơn Hàng</title>
 <!-- Font Awesome -->
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -53,7 +54,7 @@
 						<li class="nav-item"><a class="nav-link" href="QuanLySanPhamController">Quản lý Sản Phảm</a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="QuanLyDonHangController">Quản lý Đơn Hàng</a></li>
-						<li class="nav-item"><a class="nav-link" href="AdminLichSuXacNhanDonHangController">Lịch sử xác nhận đơn hàng</a></li>
+						<li class="nav-item"><a class="nav-link" href="AdminLichSuXacNhanDonHangController">Lịch sử xác nhận đơn hàng</a></li>h
 						
 						<li class="nav-item"><a class="nav-link" href="DangNhapAdmin.jsp"> <span
 								></span> Admin: <%
@@ -71,57 +72,39 @@
 	<td width="800" valign="top">
 		<table class="table table-hover">
 			<tr>
-				<td width="200"><b>Mã loại sách</b></td>
-				<td width="200"><b>Tên loại sách</b></td>
+				<td width="200"><b>Mã Hóa Đơn</b></td>
+				<td width="200"><b>Tên Sản Phẩm</b></td>
+				<td width="200"><b>Số Lượng Mua</b></td>
+				<td width="200"><b>Giá Sản Phẩm</b></td>
+				<td width="200"><b>Thành Tiền</b></td>
+				<td width="200"><b>Ngày Mua</b></td>
+				<td width="200"><b>Xác Nhận</b></td>
 				<td>
 			</tr>
 			<%
-					ArrayList<LoaiSanPhambean> dsloai = new ArrayList<>();
-					if (request.getAttribute("dsloai") != null) {
-						dsloai = (ArrayList<LoaiSanPhambean>)request.getAttribute("dsloai");
+					ArrayList<AdminDonHangbean> dsDonHang = new ArrayList<>();
+					if (request.getAttribute("dsDonHang") != null) {
+						dsDonHang = (ArrayList<AdminDonHangbean>)request.getAttribute("dsDonHang");
 					}
-					if (dsloai != null) {
-					  for (LoaiSanPhambean l : dsloai) {
+					if (dsDonHang != null) {
+					  for (AdminDonHangbean d : dsDonHang) {
+						  if(d.getDaMua() == 1){
 					%>
-			<tr>
-				<td><%=l.getMaLoaiSP()%></td>
-				<td><%=l.getTenLoaiSP()%></td>
-				<td><a
-					href="AdminXoaLoaiSPController?maLoaiSP=<%=l.getMaLoaiSP()%>">
-					<button>Xóa</button></a></td>
-			</tr>
-			<%} %>
-			<%} %>
+							<tr>
+								<td width="200"><b><%=d.getMaHD() %></b></td>
+								<td width="200"><b><%=d.getTenSP()%></b></td>
+								<td width="200"><b><%=d.getSoLuongMua() %></b></td>
+								<td width="200"><b><%=d.getGia()%></b></td>
+								<td width="200"><b><%=d.getThanhTien() %></b></td>
+								<td width="200"><b><%=d.getNgayMua() %></b></td>
+								<td width="200"><b><%=d.getDaMua() %></b></td>
+								<td width="200"> Đã Xác Nhận</td>
+							</tr>
+						<%} %>
+					<%} %>
+				<%} %>
 		</table>
 	</td>
-	<!-- Thêm Loại SP -->
-
-	<center>
-
-	<form action="AdminThemLoaiSanPhamController" method="get" style="margin-bottom: 30px">
-		<td width="800" valign="top">
-			<table class="table table-hover">
-				<tr>
-					<td width="100"><span>Mã Loại Sản Phẩm</span></td>
-					<td width="200"><input name="maLoaiSP" size="50"></td>
-				</tr>
-				<tr>
-					<td width="100"><span>Tên Loại Sản Phẩm</span></td>
-					<td width="200"><input name="tenLoaiSP" size="50"></td>
-				</tr>
-			</table>
-		</td>
-		<button type="submit">Thêm</button>
-	</form>
-	
-	<%String tbEditLoaiSP = (String)request.getAttribute("tbEditLoaiSP");
-	if(tbEditLoaiSP != null){ %>
-		<h1 style="color: red;"><%=tbEditLoaiSP %></h1>
-	<%} %>
-	
-	
-	</center>
-
 	<%
 	} else {
 	%>
@@ -132,5 +115,15 @@
 	<%
 	}
 	%>
+	
+	<%
+	String tbXacNhan = (String) request.getAttribute("tbXacNhan");
+	if(tbXacNhan != null){ %>
+		<h1 style="color: red;"><%=tbXacNhan %></h1>	
+	<%
+	}
+	%>
+</body>
+</html>
 </body>
 </html>

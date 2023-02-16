@@ -52,7 +52,7 @@
 						<li class="nav-item"><a class="nav-link" href="#">Quản lý Sản Phảm</a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="#">Quản lý Đơn Hàng</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Quản lý tài khoản khách hàng</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Lich sử xác nhận đơn hàng</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">Quản lý tài khoản Adimn</a></li>
 						<%
 						if (session.getAttribute("admin") != null) {
@@ -97,10 +97,5 @@
 		</form>
 		
 	</div>
-	
-	
-	
-	
-	
 </body>
 </html>

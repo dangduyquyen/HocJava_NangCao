@@ -14,7 +14,7 @@ public class AdminDonHangDao {
 
 		KetNoi kn = new KetNoi();
 		kn.KetNoi();
-		String sql = "select * from View_AdminDonHang";
+		String sql = "select * from View_AdminDonHang ORDER BY NgayMua DESC";
 		try {
 			PreparedStatement cmd = kn.cn.prepareStatement(sql);
 			ResultSet rs = cmd.executeQuery();
