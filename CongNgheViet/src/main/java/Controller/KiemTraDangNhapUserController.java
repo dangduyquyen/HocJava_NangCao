@@ -57,7 +57,6 @@ public class KiemTraDangNhapUserController extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("DangNhap.jsp");
 			rd.forward(request, response);
 		}
-
 	}
 
 	/**

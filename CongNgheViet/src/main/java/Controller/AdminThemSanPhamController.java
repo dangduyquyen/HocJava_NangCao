@@ -107,50 +107,51 @@ public class AdminThemSanPhamController extends HttpServlet {
 					response.setCharacterEncoding("utf-8");
 					String tentk = fileItem.getFieldName();
 					if (tentk.equals("maSP"))
-						maSP = fileItem.getString();
+						maSP = fileItem.getString("UTF-8");
 					if (tentk.equals("maLoaiSP"))
-						maLoaiSP = fileItem.getString();
+						maLoaiSP = fileItem.getString("UTF-8");
 					if (tentk.equals("tenSP"))
-						tenSP = fileItem.getString();
+						tenSP = fileItem.getString("UTF-8");
 					if (tentk.equals("soLuong"))
 						soLuong = Long.parseLong(fileItem.getString());
 					if (tentk.equals("gia"))
 						gia = Long.parseLong(fileItem.getString());
 					if (tentk.equals("tenAnhSP"))
-						AnhSP = fileItem.getString();
+						AnhSP = fileItem.getString("UTF-8");
 					if (tentk.equals("nhaSX"))
-						nhaSX = fileItem.getString();
+						nhaSX = fileItem.getString("UTF-8");
 					if (tentk.equals("namSX"))
-						namSX = fileItem.getString();
+						namSX = fileItem.getString("UTF-8");
 					if (tentk.equals("thoiGianBaoHanh"))
-						thoiGianBaoHanh = fileItem.getString();
+						thoiGianBaoHanh = fileItem.getString("UTF-8");
 					if (tentk.equals("thongTinSP"))
-						thongTinSP = fileItem.getString();
+						thongTinSP = fileItem.getString("UTF-8");
 					if (tentk.equals("thongSo1"))
-						thongSo1 = fileItem.getString();
+						thongSo1 = fileItem.getString("UTF-8");
 					if (tentk.equals("thongSo2"))
-						thongSo2 = fileItem.getString();
+						thongSo2 = fileItem.getString("UTF-8");
 					if (tentk.equals("thongSo3"))
-						thongSo3 = fileItem.getString();
+						thongSo3 = fileItem.getString("UTF-8");
 					if (tentk.equals("thongSo4"))
-						thongSo4 = fileItem.getString();
+						thongSo4 = fileItem.getString("UTF-8");
 					if (tentk.equals("thongSo5"))
-						thongSo5 = fileItem.getString();
+						thongSo5 = fileItem.getString("UTF-8");
 					if (tentk.equals("thongSo6"))
-						thongSo6 = fileItem.getString();
+						thongSo6 = fileItem.getString("UTF-8");
 					if (tentk.equals("thongSo7"))
-						thongSo7 = fileItem.getString();
+						thongSo7 = fileItem.getString("UTF-8");
 					if (tentk.equals("thongSo8"))
-						thongSo8 = fileItem.getString();
+						thongSo8 = fileItem.getString("UTF-8");
 					if (tentk.equals("thongSo9"))
-						thongSo9 = fileItem.getString();
+						thongSo9 = fileItem.getString("UTF-8");
 					if (tentk.equals("thongSo10"))
-						thongSo10 = fileItem.getString();
+						thongSo10 = fileItem.getString("UTF-8");
 				}
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+
 		tenAnhSP = "img/" + AnhSP + ".jpg";
 		if (spbo.themSP(maSP, maLoaiSP, tenSP, soLuong, gia, tenAnhSP, nhaSX, namSX, thoiGianBaoHanh, thongTinSP)
 				&& ttbo.themTSKT(maSP, thongSo1, thongSo2, thongSo3, thongSo4, thongSo5, thongSo6, thongSo7, thongSo8,

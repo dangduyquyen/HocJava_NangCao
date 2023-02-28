@@ -48,7 +48,7 @@
 						</li>
 						<li class="nav-item"><a class="nav-link" href="QuanLyDonHangController">Quản lý Đơn Hàng</a></li>
 						<li class="nav-item"><a class="nav-link" href="AdminLichSuXacNhanDonHangController">Lịch sử xác nhận đơn hàng</a></li>
-						
+						<li class="nav-item"><a class="nav-link" href="AdminQLHoatDong">Quản lý hoạt động</a></li>
 						
 						<li class="nav-item"><a class="nav-link" href="DangNhapAdmin.jsp"> <span
 								></span> Admin: <%

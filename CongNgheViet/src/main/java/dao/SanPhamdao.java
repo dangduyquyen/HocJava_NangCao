@@ -179,10 +179,11 @@ public class SanPhamdao {
 
 		KetNoi kn = new KetNoi();
 		kn.KetNoi();
-		String sql = "delete from SanPham where MaSP = ?";
+		String sql = "delete from SanPham where MaSP = ?" + "delete from ThongSoKyThuat where MaSP = ? " + "";
 		try {
 			PreparedStatement cmd = kn.cn.prepareStatement(sql);
 			cmd.setString(1, maSP);
+			cmd.setString(2, maSP);
 			cmd.executeUpdate();
 
 			kn.cn.close();
